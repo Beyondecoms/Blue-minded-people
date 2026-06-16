@@ -9,75 +9,80 @@
  */
 {
   "sections": {
-    "hero_rhMed7": {
-      "type": "hero",
+    "section_RrKPBd": {
+      "type": "section",
       "blocks": {
-        "logo_38acff": {
-          "type": "logo",
-          "name": "t:names.logo",
-          "disabled": true,
+        "video_Nb94WR": {
+          "type": "video",
+          "name": "t:names.video",
           "settings": {
-            "inverse": true,
-            "font": "heading",
-            "unit": "pixel",
-            "percent_width": 100,
-            "pixel_height": 40,
-            "custom_mobile_size": false,
-            "unit_mobile": "pixel",
-            "percent_width_mobile": 100,
-            "pixel_height_mobile": 64,
+            "source": "uploaded",
+            "video": "shopify://files/videos/74a82b32.mp4",
+            "video_url": "",
+            "video_autoplay": true,
+            "video_loop": true,
+            "alt": "",
+            "custom_width": 100,
+            "custom_width_mobile": 100,
+            "aspect_ratio": "16/9",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "spacer_iqNMWF": {
-          "type": "spacer",
-          "name": "t:names.spacer",
-          "settings": {
-            "size": "percent",
-            "percent_size": 0,
-            "pixel_size": 36,
-            "custom_mobile_size": false,
-            "size_mobile": "percent",
-            "percent_size_mobile": 100,
-            "pixel_size_mobile": 120
-          },
-          "blocks": {}
-        },
-        "button_3cL8kq": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop now",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "link",
-            "width": "custom",
-            "custom_width": 15,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "logo_38acff",
-        "spacer_iqNMWF",
-        "button_3cL8kq"
+        "video_Nb94WR"
       ],
+      "disabled": true,
+      "name": "t:names.video_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "hero_3rjkBF": {
+      "type": "hero",
       "name": "t:names.hero",
       "settings": {
-        "media_type_1": "video",
-        "media_type_2": "video",
-        "video_2": "shopify://files/videos/74a82b32.mp4",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/2_4_0dec461c-d2bf-486c-95d3-d4e921037ea0.webp",
+        "media_type_2": "image",
+        "stack_media_on_mobile": true,
+        "custom_mobile_media": true,
         "media_type_1_mobile": "image",
+        "image_1_mobile": "shopify://shop_images/2_13_6ef1ed6f-c284-47f6-967d-fdf14b0e20a1.webp",
         "media_type_2_mobile": "image",
-        "link": "shopify://collections/all",
+        "link": "",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -85,20 +90,20 @@
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "space-between",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height": "full-screen",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "full-width",
+        "section_height": "large",
         "section_height_custom": 50,
-        "color_scheme": "scheme-6",
+        "color_scheme": "scheme-5",
         "toggle_overlay": true,
-        "overlay_color": "",
-        "overlay_style": "solid",
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
         "gradient_direction": "to top",
         "blurred_reflection": false,
         "reflection_opacity": 75,
-        "padding-block-start": 0,
-        "padding-block-end": 48
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     },
     "section_whats_new_today_aD9myK": {
@@ -107,7 +112,7 @@
         "product_card_gfweth": {
           "type": "product_card",
           "settings": {
-            "product_image": "shopify://shop_images/navy_blue_0ef80fd7-05f7-4a0c-b9b0-dc6b09e495b4.webp",
+            "product_image": "shopify://shop_images/2_3_fd2df54c-679c-4f9d-9d23-5b997ccb09df.webp",
             "brand_name": "BRAND",
             "product_url": ""
           }
@@ -115,7 +120,7 @@
         "product_card_xLwBpc": {
           "type": "product_card",
           "settings": {
-            "product_image": "shopify://shop_images/navy_blue_0ef80fd7-05f7-4a0c-b9b0-dc6b09e495b4.webp",
+            "product_image": "shopify://shop_images/6_3_6e211781-198b-4aad-8414-78ef863bd8a4.webp",
             "brand_name": "BRAND",
             "product_url": ""
           }
@@ -123,7 +128,7 @@
         "product_card_kEktML": {
           "type": "product_card",
           "settings": {
-            "product_image": "shopify://shop_images/navy_blue_0ef80fd7-05f7-4a0c-b9b0-dc6b09e495b4.webp",
+            "product_image": "shopify://shop_images/3_4_7c01ba11-02ba-492a-83be-1a807f67a517.webp",
             "brand_name": "BRAND",
             "product_url": ""
           }
@@ -139,7 +144,7 @@
         "product_card_H8Cn9w": {
           "type": "product_card",
           "settings": {
-            "product_image": "shopify://shop_images/navy_blue_0ef80fd7-05f7-4a0c-b9b0-dc6b09e495b4.webp",
+            "product_image": "shopify://shop_images/Untitled-1_copy_b5e7f71b-7c25-45cc-baed-a03d903c8e8b.jpg",
             "brand_name": "BRAND",
             "product_url": ""
           }
@@ -314,7 +319,7 @@
         "category_card_NP8Pkc": {
           "type": "category_card",
           "settings": {
-            "card_image": "shopify://shop_images/navy_blue_0ef80fd7-05f7-4a0c-b9b0-dc6b09e495b4.webp",
+            "card_image": "shopify://shop_images/4_4_e300b760-445a-4883-a1ff-0e430d950a61.jpg",
             "card_title": "REGULAR TROUSER FABRIC",
             "btn_label": "Shop Now",
             "card_url": ""
@@ -332,7 +337,7 @@
         "category_card_HRxyQA": {
           "type": "category_card",
           "settings": {
-            "card_image": "shopify://shop_images/black_c2dcd404-d081-4189-bef9-40b11f2cea02.webp",
+            "card_image": "shopify://shop_images/2_3_fd2df54c-679c-4f9d-9d23-5b997ccb09df.webp",
             "card_title": "LYCRA TROUSER FABRIC",
             "btn_label": "Shop Now",
             "card_url": ""
@@ -350,7 +355,7 @@
         "category_card_BPN67W": {
           "type": "category_card",
           "settings": {
-            "card_image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "card_image": "shopify://shop_images/Untitled-1_copy_b5e7f71b-7c25-45cc-baed-a03d903c8e8b.jpg",
             "card_title": "DENIM TROUSER FABRIC",
             "btn_label": "Shop Now",
             "card_url": ""
@@ -865,6 +870,90 @@
         "padding_bottom": 0
       }
     },
+    "tab_section_iaPzmM": {
+      "type": "tab-section",
+      "blocks": {
+        "timeline_item_TXbLL3": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2016",
+            "image": "shopify://shop_images/young-child-in-ball-cap.jpg",
+            "title": "Designing For Powerhouses",
+            "text": "<p>Add your timeline content here.</p>"
+          }
+        },
+        "timeline_item_VJ3LYM": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2017",
+            "image": "shopify://shop_images/man-holding-a-leather-bag-on-a-set-of-stairs.jpg",
+            "title": "Designing For Powerhouses",
+            "text": "<p>Add your timeline content here.</p>"
+          }
+        },
+        "timeline_item_dQPdir": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2018",
+            "image": "shopify://shop_images/a-christmas-package-being-wrapped.jpg",
+            "title": "Designing For Powerhouses",
+            "text": "<p>Add your timeline content here.</p>"
+          }
+        },
+        "timeline_item_yMVDbJ": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2020",
+            "image": "shopify://shop_images/rack-of-womens-clothing.jpg",
+            "title": "Designing For Powerhouses",
+            "text": "<p>Add your timeline content here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_item_TXbLL3",
+        "timeline_item_VJ3LYM",
+        "timeline_item_dQPdir",
+        "timeline_item_yMVDbJ"
+      ],
+      "name": "Timeline tabs",
+      "settings": {
+        "heading": "About us",
+        "section_bg": "#ffffff",
+        "section_padding_top": 20,
+        "section_padding_bottom": 30,
+        "section_padding_top_mobile": 20,
+        "section_padding_bottom_mobile": 30,
+        "heading_color": "#0c4168",
+        "heading_size": 42,
+        "heading_weight": "700",
+        "heading_size_mobile": 24,
+        "heading_weight_mobile": "700",
+        "tab_color": "#777777",
+        "tab_active_color": "#0c4168",
+        "tab_underline_color": "#9ad24c",
+        "tab_font_size": 15,
+        "tab_font_weight": "600",
+        "tab_font_size_mobile": 15,
+        "tab_font_weight_mobile": "600",
+        "content_heading_color": "#0c4168",
+        "content_heading_size": 28,
+        "content_heading_weight": "700",
+        "content_heading_size_mobile": 22,
+        "content_text_color": "#666666",
+        "content_text_size": 15,
+        "content_heading_weight_mobile": "700",
+        "content_text_weight": "400",
+        "content_text_size_mobile": 14,
+        "content_text_weight_mobile": "400",
+        "content_width": 500,
+        "image_height_desktop": 700,
+        "image_height_mobile": 400,
+        "image_radius": 0,
+        "image_fit": "cover",
+        "layout_gap": 40
+      }
+    },
     "explore_selections_grid_YRPPzj": {
       "type": "explore-selections-grid",
       "blocks": {
@@ -1046,10 +1135,414 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "look_book_tMbyRK": {
+      "type": "look-book",
+      "blocks": {
+        "card_zbdBfQ": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/navy_blue_0ef80fd7-05f7-4a0c-b9b0-dc6b09e495b4.webp",
+            "card_label": "OUR STYLE"
+          }
+        },
+        "card_PDaGN7": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/black_c2dcd404-d081-4189-bef9-40b11f2cea02.webp",
+            "card_label": "OUR STYLE"
+          }
+        },
+        "card_YkUYAw": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "card_label": "OUR STYLE"
+          }
+        },
+        "stat_RVH3ky": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "10K+",
+            "stat_label": "Happy Customers"
+          }
+        },
+        "stat_AmBTXt": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "10K+",
+            "stat_label": "Happy Customers"
+          }
+        },
+        "stat_Egn3Qi": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "10K+",
+            "stat_label": "Happy Customers"
+          }
+        }
+      },
+      "block_order": [
+        "card_zbdBfQ",
+        "card_PDaGN7",
+        "card_YkUYAw",
+        "stat_RVH3ky",
+        "stat_AmBTXt",
+        "stat_Egn3Qi"
+      ],
+      "name": "About Us — Fan Cards",
+      "settings": {
+        "heading": "ABOUT US",
+        "body_text": "Be bold, be you. Born from a belief that every woman deserves confidence in everything she wears.",
+        "cta_text": "OUR STORY",
+        "cta_url": "",
+        "section_font": "sans_serif_n4",
+        "heading_color": "#ffffff",
+        "heading_size": 40,
+        "heading_size_mobile": 24,
+        "heading_weight": 700,
+        "body_color": "#ffffff",
+        "body_size": 14,
+        "body_size_mobile": 14,
+        "body_weight": 400,
+        "button_bg": "#ffffff",
+        "button_text": "#d6d6d6",
+        "button_hover_bg": "#000000",
+        "button_hover_text": "#ffffff",
+        "button_font_size": 14,
+        "button_font_size_mobile": 14,
+        "button_font_weight": 700,
+        "button_width_desktop": 150,
+        "button_height_desktop": 40,
+        "button_width_mobile": 100,
+        "button_height_mobile": 40,
+        "stats_number_color": "#21f010",
+        "stats_label_color": "#b7c1cc",
+        "stats_number_size": 20,
+        "stats_number_size_mobile": 18,
+        "stats_number_weight": 800,
+        "stats_label_size": 12,
+        "stats_label_size_mobile": 10,
+        "stats_label_weight": 400,
+        "background_color": "#ffffff",
+        "accent_color": "#21f010",
+        "blob_color": "#21f010",
+        "padding_desktop-top": 60,
+        "padding_desktop-bottom": 0,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 30,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "rotating_text_xz6pbK": {
+      "type": "rotating-text",
+      "blocks": {
+        "phrase_NHVwHV": {
+          "type": "phrase",
+          "settings": {
+            "word": "bold",
+            "sub_text": "But never curt"
+          }
+        },
+        "phrase_9p8yAT": {
+          "type": "phrase",
+          "settings": {
+            "word": "unapologetic",
+            "sub_text": "But never disrespectful"
+          }
+        },
+        "phrase_YPGeJH": {
+          "type": "phrase",
+          "settings": {
+            "word": "rebellious",
+            "sub_text": "But never scandalous"
+          }
+        },
+        "phrase_trbATH": {
+          "type": "phrase",
+          "settings": {
+            "word": "fearless",
+            "sub_text": "But never reckless"
+          }
+        },
+        "phrase_rcLiz7": {
+          "type": "phrase",
+          "settings": {
+            "word": "confident",
+            "sub_text": "But never arrogant"
+          }
+        }
+      },
+      "block_order": [
+        "phrase_NHVwHV",
+        "phrase_9p8yAT",
+        "phrase_YPGeJH",
+        "phrase_trbATH",
+        "phrase_rcLiz7"
+      ],
+      "name": "We Are — Rotating Banner",
+      "settings": {
+        "static_text": "We are",
+        "background_color": "#f5c800",
+        "static_text_color": "#ffffff",
+        "rotating_text_color": "#0c4168",
+        "sub_text_color": "#0c4168",
+        "static_text_size_desktop": 52,
+        "rotating_text_size_desktop": 52,
+        "sub_text_size_desktop": 15,
+        "static_text_size_mobile": 28,
+        "rotating_text_size_mobile": 28,
+        "sub_text_size_mobile": 12,
+        "static_text_weight_desktop": 700,
+        "rotating_text_weight_desktop": 900,
+        "sub_text_weight_desktop": 400,
+        "static_text_weight_mobile": 700,
+        "rotating_text_weight_mobile": 900,
+        "sub_text_weight_mobile": 400,
+        "interval": 2,
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "custom_editorial_BTqYCq": {
+      "type": "custom-editorial",
+      "blocks": {
+        "grid_item_AgrLXA": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/a-christmas-package-being-wrapped.jpg",
+            "caption": "Explore the incredible materials we use",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_aKeL3j": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/santa-fixes-the-bow-on-a-gift.jpg",
+            "caption": "Read about our amazing factory partners",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_PF4rVq": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/young-child-in-ball-cap.jpg",
+            "caption": "Our promise of great quality",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_aEVNec": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/man-holding-a-leather-bag-on-a-set-of-stairs.jpg",
+            "caption": "Discover our pursuit of sustainability",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "grid_item_AgrLXA",
+        "grid_item_aKeL3j",
+        "grid_item_PF4rVq",
+        "grid_item_aEVNec"
+      ],
+      "name": "Custom Editorial Split",
+      "settings": {
+        "max_width": 1400,
+        "left_width": "1.1fr",
+        "gap": 6,
+        "h_padding": 20,
+        "mobile_side_padding": 12,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "left_image": "shopify://shop_images/casual-mens-fashion-on-rooftop.jpg",
+        "left_content_padding": 32,
+        "left_content_padding_mobile": 20,
+        "left_min_height": 520,
+        "left_min_height_mobile": 420,
+        "left_min_height_small_mobile": 340,
+        "logo_width": 80,
+        "logo_margin_bottom": 28,
+        "stats_text": "10+ years of premium fashion.\nOver 2 lakh happy customers.\n1500+ unique styles.",
+        "body_text": "And a relentless vision of setting a new benchmark for premium Indian fashion.",
+        "cta_label": "READ REVIEWS",
+        "cta_url": "",
+        "grid_overlay_padding": 16,
+        "grid_overlay_padding_mobile": 10,
+        "grid_bottom_gap": 6,
+        "grid_item_ratio": "1 / 1",
+        "body_font": "Helvetica Neue",
+        "stats_size": 13,
+        "stats_size_mobile": 13,
+        "stats_weight": "400",
+        "stats_margin_bottom": 20,
+        "body_size": 13,
+        "body_size_mobile": 13,
+        "body_weight": "500",
+        "body_margin_bottom": 28,
+        "body_max_width": 280,
+        "cta_size": 40,
+        "cta_size_mobile": 24,
+        "cta_weight": "700",
+        "caption_size": 13,
+        "caption_size_mobile": 12,
+        "caption_weight": "500",
+        "explore_size": 10,
+        "explore_size_mobile": 9,
+        "explore_weight": "700",
+        "explore_width_desktop": 150,
+        "explore_height_desktop": 40,
+        "explore_width_mobile": 100,
+        "explore_height_mobile": 40,
+        "explore_padding_y": 10,
+        "explore_padding_x": 14,
+        "explore_padding_y_mobile": 10,
+        "explore_padding_x_mobile": 14,
+        "explore_radius": 0,
+        "background_color": "#ffffff",
+        "stats_color": "#ffffff",
+        "left_panel_bg": "#0c4168",
+        "grid_item_bg": "#0c4168",
+        "placeholder_bg": "#0c4168",
+        "overlay_start_color": "#0c4168b8",
+        "overlay_end_color": "rgba(0,0,0,0)",
+        "explore_bg": "#ffffff",
+        "explore_text_color": "#0c4168",
+        "explore_hover_bg": "#0c4168",
+        "explore_hover_text": "#ffffff",
+        "body_color": "#ffffff",
+        "cta_color": "#ffffff",
+        "cta_hover_color": "#0c4168",
+        "caption_color": "#ffffff",
+        "explore_color": "#ffffff"
+      }
+    },
+    "hero_Fr6tr6": {
+      "type": "hero",
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/Screenshot_2026-06-15_230654.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "trust_scrolling_LFQwYD": {
+      "type": "trust-scrolling",
+      "blocks": {
+        "feature_crXfrc": {
+          "type": "feature",
+          "settings": {
+            "title": "OEKO-TEX® Certified",
+            "text": "100% safe, chemical-free & tested fabrics."
+          }
+        },
+        "feature_7b8RGi": {
+          "type": "feature",
+          "settings": {
+            "title": "Sustainably Made",
+            "text": "Certified to the Global Organic Textile Standard."
+          }
+        },
+        "feature_YQCCWT": {
+          "type": "feature",
+          "settings": {
+            "title": "Trusted Quality",
+            "text": "Rigorously tested for comfort & durability."
+          }
+        },
+        "feature_6dHMcW": {
+          "type": "feature",
+          "settings": {
+            "title": "Dermatologically Tested",
+            "text": "Safe for sensitive skin, clinically approved."
+          }
+        }
+      },
+      "block_order": [
+        "feature_crXfrc",
+        "feature_7b8RGi",
+        "feature_YQCCWT",
+        "feature_6dHMcW"
+      ],
+      "name": "Trust scroll strip",
+      "settings": {
+        "heading": "Built to earn customer trust",
+        "subheading": "Show your strongest product advantages in a premium, scrollable strip.",
+        "scroll_speed": 60,
+        "section_bg": "#ffffff",
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 10,
+        "padding_top_mobile": 16,
+        "padding_bottom_mobile": 14,
+        "font_family": "sans_serif_n4",
+        "heading_size_desktop": 32,
+        "heading_size_mobile": 24,
+        "heading_weight_desktop": "700",
+        "heading_weight_mobile": "700",
+        "subheading_size_desktop": 15,
+        "subheading_size_mobile": 13,
+        "subheading_weight_desktop": "500",
+        "subheading_weight_mobile": "500",
+        "title_size_desktop": 15,
+        "title_size_mobile": 14,
+        "title_weight_desktop": "700",
+        "title_weight_mobile": "700",
+        "text_size_desktop": 13,
+        "text_size_mobile": 12,
+        "text_weight_desktop": "500",
+        "text_weight_mobile": "500",
+        "heading_color": "#0c4168",
+        "subheading_color": "#666666",
+        "card_bg": "#ffffff",
+        "card_border": "#d9d9d9",
+        "title_color": "#0c4168",
+        "text_color": "#666666",
+        "icon_bg": "#f5f5f5",
+        "card_hover_bg": "#0c4168",
+        "card_hover_border": "#0c4168",
+        "title_hover_color": "#ffffff",
+        "text_hover_color": "#ffffff",
+        "icon_hover_bg": "#c8e62b",
+        "fade_color": "#ffffff"
+      }
     }
   },
   "order": [
-    "hero_rhMed7",
+    "section_RrKPBd",
+    "hero_3rjkBF",
     "section_whats_new_today_aD9myK",
     "hero_CNU3UH",
     "shop_by_category_Y6HHJz",
@@ -1058,7 +1551,13 @@
     "hero_exggzb",
     "brand_product_carousel_XMYDx6",
     "our_favourites_hero_BF4Axj",
+    "tab_section_iaPzmM",
     "explore_selections_grid_YRPPzj",
-    "three_panel_editorial_GNpExa"
+    "three_panel_editorial_GNpExa",
+    "look_book_tMbyRK",
+    "rotating_text_xz6pbK",
+    "custom_editorial_BTqYCq",
+    "hero_Fr6tr6",
+    "trust_scrolling_LFQwYD"
   ]
 }

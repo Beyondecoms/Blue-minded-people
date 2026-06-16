@@ -1,0 +1,938 @@
+{% liquid
+  assign customer_care_heading = section.settings.customer_care_heading | strip
+  assign about_heading = section.settings.about_heading | strip
+  assign app_heading = section.settings.app_heading | strip
+  assign payments_heading = section.settings.payments_heading | strip
+  assign brand_heading = section.settings.brand_heading | strip
+  assign brand_description = section.settings.brand_description
+  assign copyright_text = section.settings.copyright_text | strip
+%}
+
+<section
+  id="CustomFooter-{{ section.id }}"
+  class="custom-footer"
+  style="
+    --custom-footer-background: {{ section.settings.background_color }};
+    --custom-footer-text: {{ section.settings.text_color }};
+    --custom-footer-heading: {{ section.settings.heading_color }};
+    --custom-footer-link: {{ section.settings.link_color }};
+    --custom-footer-link-hover: {{ section.settings.link_hover_color }};
+    --custom-footer-heading-size: {{ section.settings.heading_font_size }}px;
+    --custom-footer-menu-size: {{ section.settings.menu_font_size }}px;
+    --custom-footer-description-size: {{ section.settings.description_font_size }}px;
+    --custom-footer-copyright-size: {{ section.settings.copyright_font_size }}px;
+    --custom-footer-top-padding: {{ section.settings.padding_top }}px;
+    --custom-footer-bottom-padding: {{ section.settings.padding_bottom }}px;
+    --custom-footer-column-gap: {{ section.settings.desktop_column_gap }}px;
+    --custom-footer-mobile-gap: {{ section.settings.mobile_column_gap }}px;
+    --custom-footer-logo-width: {{ section.settings.logo_width }}px;
+    --custom-footer-qr-width: {{ section.settings.qr_width }}px;
+  "
+>
+  <div class="custom-footer__inner section section--full-width">
+    <div class="custom-footer__grid">
+      <div class="custom-footer__column">
+        {% if customer_care_heading != blank %}
+          <h2 class="custom-footer__heading">{{ customer_care_heading }}</h2>
+        {% endif %}
+        <nav
+          class="custom-footer__nav"
+          aria-label="{{ customer_care_heading | escape }}"
+        >
+          <ul class="custom-footer__menu" role="list">
+            {% if section.settings.customer_care_label_1 != blank %}
+              <li><a href="{{ section.settings.customer_care_url_1 | default: '#' }}">{{ section.settings.customer_care_label_1 }}</a></li>
+            {% endif %}
+            {% if section.settings.customer_care_label_2 != blank %}
+              <li><a href="{{ section.settings.customer_care_url_2 | default: '#' }}">{{ section.settings.customer_care_label_2 }}</a></li>
+            {% endif %}
+            {% if section.settings.customer_care_label_3 != blank %}
+              <li><a href="{{ section.settings.customer_care_url_3 | default: '#' }}">{{ section.settings.customer_care_label_3 }}</a></li>
+            {% endif %}
+            {% if section.settings.customer_care_label_4 != blank %}
+              <li><a href="{{ section.settings.customer_care_url_4 | default: '#' }}">{{ section.settings.customer_care_label_4 }}</a></li>
+            {% endif %}
+            {% if section.settings.customer_care_label_5 != blank %}
+              <li><a href="{{ section.settings.customer_care_url_5 | default: '#' }}">{{ section.settings.customer_care_label_5 }}</a></li>
+            {% endif %}
+            {% if section.settings.customer_care_label_6 != blank %}
+              <li><a href="{{ section.settings.customer_care_url_6 | default: '#' }}">{{ section.settings.customer_care_label_6 }}</a></li>
+            {% endif %}
+            {% if section.settings.customer_care_label_7 != blank %}
+              <li><a href="{{ section.settings.customer_care_url_7 | default: '#' }}">{{ section.settings.customer_care_label_7 }}</a></li>
+            {% endif %}
+            {% if section.settings.customer_care_label_8 != blank %}
+              <li><a href="{{ section.settings.customer_care_url_8 | default: '#' }}">{{ section.settings.customer_care_label_8 }}</a></li>
+            {% endif %}
+            {% if section.settings.customer_care_label_9 != blank %}
+              <li><a href="{{ section.settings.customer_care_url_9 | default: '#' }}">{{ section.settings.customer_care_label_9 }}</a></li>
+            {% endif %}
+            {% if section.settings.customer_care_label_10 != blank %}
+              <li><a href="{{ section.settings.customer_care_url_10 | default: '#' }}">{{ section.settings.customer_care_label_10 }}</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+
+      <div class="custom-footer__column">
+        {% if about_heading != blank %}
+          <h2 class="custom-footer__heading">{{ about_heading }}</h2>
+        {% endif %}
+        <nav
+          class="custom-footer__nav"
+          aria-label="{{ about_heading | escape }}"
+        >
+          <ul class="custom-footer__menu" role="list">
+            {% if section.settings.about_label_1 != blank %}
+              <li><a href="{{ section.settings.about_url_1 | default: '#' }}">{{ section.settings.about_label_1 }}</a></li>
+            {% endif %}
+            {% if section.settings.about_label_2 != blank %}
+              <li><a href="{{ section.settings.about_url_2 | default: '#' }}">{{ section.settings.about_label_2 }}</a></li>
+            {% endif %}
+            {% if section.settings.about_label_3 != blank %}
+              <li><a href="{{ section.settings.about_url_3 | default: '#' }}">{{ section.settings.about_label_3 }}</a></li>
+            {% endif %}
+            {% if section.settings.about_label_4 != blank %}
+              <li><a href="{{ section.settings.about_url_4 | default: '#' }}">{{ section.settings.about_label_4 }}</a></li>
+            {% endif %}
+            {% if section.settings.about_label_5 != blank %}
+              <li><a href="{{ section.settings.about_url_5 | default: '#' }}">{{ section.settings.about_label_5 }}</a></li>
+            {% endif %}
+            {% if section.settings.about_label_6 != blank %}
+              <li><a href="{{ section.settings.about_url_6 | default: '#' }}">{{ section.settings.about_label_6 }}</a></li>
+            {% endif %}
+            {% if section.settings.about_label_7 != blank %}
+              <li><a href="{{ section.settings.about_url_7 | default: '#' }}">{{ section.settings.about_label_7 }}</a></li>
+            {% endif %}
+            {% if section.settings.about_label_8 != blank %}
+              <li><a href="{{ section.settings.about_url_8 | default: '#' }}">{{ section.settings.about_label_8 }}</a></li>
+            {% endif %}
+            {% if section.settings.about_label_9 != blank %}
+              <li><a href="{{ section.settings.about_url_9 | default: '#' }}">{{ section.settings.about_label_9 }}</a></li>
+            {% endif %}
+            {% if section.settings.about_label_10 != blank %}
+              <li><a href="{{ section.settings.about_url_10 | default: '#' }}">{{ section.settings.about_label_10 }}</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+
+      <div class="custom-footer__column">
+        {% if app_heading != blank %}
+          <h2 class="custom-footer__heading">{{ app_heading }}</h2>
+        {% endif %}
+        <div class="custom-footer__app">
+          {% if section.settings.qr_image != blank %}
+            <div class="custom-footer__qr">
+              {{
+                section.settings.qr_image
+                | image_url: width: 600
+                | image_tag:
+                  widths: '160, 240, 320, 480, 600',
+                  sizes: '(max-width: 749px) min(180px, 50vw), 220px',
+                  class: 'custom-footer__qr-image',
+                  alt: app_heading
+              }}
+            </div>
+          {% endif %}
+
+          {% if section.settings.app_description != blank %}
+            <div class="custom-footer__description rte">
+              {{ section.settings.app_description }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="custom-footer__column">
+        {% if payments_heading != blank %}
+          <h2 class="custom-footer__heading">{{ payments_heading }}</h2>
+        {% endif %}
+
+        <ul class="custom-footer__payments" role="list">
+          {% if section.settings.show_mastercard %}
+            <li class="custom-footer__payment-item">
+              {{ 'master' | payment_type_svg_tag: class: 'icon icon--full-color custom-footer__payment-icon' }}
+            </li>
+          {% endif %}
+          {% if section.settings.show_visa %}
+            <li class="custom-footer__payment-item">
+              {{ 'visa' | payment_type_svg_tag: class: 'icon icon--full-color custom-footer__payment-icon' }}
+            </li>
+          {% endif %}
+          {% if section.settings.show_amex %}
+            <li class="custom-footer__payment-item">
+              {{ 'american_express' | payment_type_svg_tag: class: 'icon icon--full-color custom-footer__payment-icon' }}
+            </li>
+          {% endif %}
+          {% if section.settings.show_jcb %}
+            <li class="custom-footer__payment-item">
+              {{ 'jcb' | payment_type_svg_tag: class: 'icon icon--full-color custom-footer__payment-icon' }}
+            </li>
+          {% endif %}
+          {% if section.settings.show_unionpay %}
+            <li class="custom-footer__payment-item">
+              {{ 'unionpay' | payment_type_svg_tag: class: 'icon icon--full-color custom-footer__payment-icon' }}
+            </li>
+          {% endif %}
+          {% if section.settings.show_apple_pay %}
+            <li class="custom-footer__payment-item">
+              {{ 'apple_pay' | payment_type_svg_tag: class: 'icon icon--full-color custom-footer__payment-icon' }}
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="custom-footer__separator" aria-hidden="true"></div>
+
+    <div class="custom-footer__brand">
+      {% if brand_heading != blank %}
+        <h2 class="custom-footer__brand-heading">{{ brand_heading }}</h2>
+      {% endif %}
+
+      {% if brand_description != blank %}
+        <div class="custom-footer__brand-description rte">
+          {{ brand_description }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.brand_link_text != blank %}
+        <a
+          class="custom-footer__brand-link"
+          href="{{ section.settings.brand_link_url | default: '#' }}"
+        >
+          {{ section.settings.brand_link_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="custom-footer__separator" aria-hidden="true"></div>
+
+    <div class="custom-footer__copyright">
+      {% if section.settings.footer_logo != blank %}
+        <div class="custom-footer__copyright-logo">
+          {{
+            section.settings.footer_logo
+            | image_url: width: 400
+            | image_tag:
+              widths: '100, 140, 180, 240, 320, 400',
+              sizes: '160px',
+              class: 'custom-footer__copyright-image',
+              alt: brand_heading
+          }}
+        </div>
+      {% endif %}
+
+      {% if copyright_text != blank %}
+        <p class="custom-footer__copyright-text">{{ copyright_text }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .custom-footer {
+    background: var(--custom-footer-background);
+    color: var(--custom-footer-text);
+  }
+
+  .custom-footer,
+  .custom-footer p,
+  .custom-footer li,
+  .custom-footer a {
+    color: var(--custom-footer-text);
+  }
+
+  .custom-footer__inner {
+    padding-top: var(--custom-footer-top-padding);
+    padding-bottom: var(--custom-footer-bottom-padding);
+    padding-inline: clamp(20px, 3vw, 32px);
+  }
+
+  .custom-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--custom-footer-mobile-gap);
+  }
+
+  .custom-footer__column {
+    min-width: 0;
+  }
+
+  .custom-footer__heading,
+  .custom-footer__brand-heading {
+    margin: 0 0 1.5rem;
+    color: var(--custom-footer-heading);
+    font-size: var(--custom-footer-heading-size);
+    line-height: 1.25;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .custom-footer__menu,
+  .custom-footer__payments {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .custom-footer__menu {
+    display: grid;
+    gap: 0.875rem;
+  }
+
+  .custom-footer__menu a,
+  .custom-footer__brand-link {
+    color: var(--custom-footer-link);
+    font-size: var(--custom-footer-menu-size);
+    line-height: 1.5;
+    text-decoration: none;
+    transition: color 0.25s ease, text-decoration-color 0.25s ease;
+    text-underline-offset: 0.18em;
+  }
+
+  .custom-footer__menu a:hover,
+  .custom-footer__brand-link:hover {
+    color: var(--custom-footer-link-hover);
+    text-decoration: underline;
+  }
+
+  .custom-footer__app {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .custom-footer__qr {
+    flex: 0 0 auto;
+    width: min(100%, var(--custom-footer-qr-width));
+  }
+
+  .custom-footer__qr-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .custom-footer__description,
+  .custom-footer__brand-description {
+    font-size: var(--custom-footer-description-size);
+    line-height: 1.65;
+  }
+
+  .custom-footer__description > *:first-child,
+  .custom-footer__brand-description > *:first-child {
+    margin-top: 0;
+  }
+
+  .custom-footer__description > *:last-child,
+  .custom-footer__brand-description > *:last-child {
+    margin-bottom: 0;
+  }
+
+  .custom-footer__payments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .custom-footer__payment-item {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .custom-footer__payment-icon {
+    display: block;
+  }
+
+  .custom-footer__separator {
+    width: 100%;
+    height: 1px;
+    background: rgb(0 0 0 / 0.12);
+    margin-block: clamp(2rem, 4vw, 3rem);
+  }
+
+  .custom-footer__brand {
+    max-width: 56rem;
+  }
+
+  .custom-footer__brand-link {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
+  .custom-footer__copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .custom-footer__copyright-logo {
+    width: min(100%, var(--custom-footer-logo-width));
+  }
+
+  .custom-footer__copyright-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .custom-footer__copyright-text {
+    margin: 0;
+    font-size: var(--custom-footer-copyright-size);
+    line-height: 1.5;
+  }
+
+  @media screen and (min-width: 750px) {
+    .custom-footer__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: calc(var(--custom-footer-mobile-gap) * 1.25);
+      column-gap: var(--custom-footer-column-gap);
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .custom-footer__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .custom-footer__inner {
+      text-align: center;
+    }
+
+    .custom-footer__app {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .custom-footer__payments {
+      justify-content: center;
+    }
+
+    .custom-footer__brand {
+      margin-inline: auto;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom footer",
+  "tag": "section",
+  "class": "section-wrapper",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#6b6b6b"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#6b6b6b"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#111111"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading font size",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "menu_font_size",
+      "label": "Menu font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "label": "Description font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "copyright_font_size",
+      "label": "Copyright font size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "desktop_column_gap",
+      "label": "Desktop column gap",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "mobile_column_gap",
+      "label": "Mobile column gap",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "qr_image",
+      "label": "QR code upload"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer logo upload"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 40,
+      "max": 220,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "qr_width",
+      "label": "QR width",
+      "min": 80,
+      "max": 240,
+      "step": 5,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "header",
+      "content": "Customer Care"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_heading",
+      "label": "Heading",
+      "default": "CUSTOMER CARE"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_label_1",
+      "label": "Link 1 label",
+      "default": "Track An Order"
+    },
+    {
+      "type": "url",
+      "id": "customer_care_url_1",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_label_2",
+      "label": "Link 2 label",
+      "default": "Create A Return"
+    },
+    {
+      "type": "url",
+      "id": "customer_care_url_2",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_label_3",
+      "label": "Link 3 label",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "customer_care_url_3",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_label_4",
+      "label": "Link 4 label",
+      "default": "Exchanges & Returns"
+    },
+    {
+      "type": "url",
+      "id": "customer_care_url_4",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_label_5",
+      "label": "Link 5 label",
+      "default": "Delivery"
+    },
+    {
+      "type": "url",
+      "id": "customer_care_url_5",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_label_6",
+      "label": "Link 6 label",
+      "default": "Holiday Orders"
+    },
+    {
+      "type": "url",
+      "id": "customer_care_url_6",
+      "label": "Link 6 URL"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_label_7",
+      "label": "Link 7 label",
+      "default": "Terms & Conditions"
+    },
+    {
+      "type": "url",
+      "id": "customer_care_url_7",
+      "label": "Link 7 URL"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_label_8",
+      "label": "Link 8 label",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "url",
+      "id": "customer_care_url_8",
+      "label": "Link 8 URL"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_label_9",
+      "label": "Link 9 label",
+      "default": "Cookie Policy"
+    },
+    {
+      "type": "url",
+      "id": "customer_care_url_9",
+      "label": "Link 9 URL"
+    },
+    {
+      "type": "text",
+      "id": "customer_care_label_10",
+      "label": "Link 10 label",
+      "default": "Cookie Center"
+    },
+    {
+      "type": "url",
+      "id": "customer_care_url_10",
+      "label": "Link 10 URL"
+    },
+    {
+      "type": "header",
+      "content": "About Us"
+    },
+    {
+      "type": "text",
+      "id": "about_heading",
+      "label": "Heading",
+      "default": "ABOUT US"
+    },
+    {
+      "type": "text",
+      "id": "about_label_1",
+      "label": "Link 1 label",
+      "default": "Discover MARIA NUALART"
+    },
+    {
+      "type": "url",
+      "id": "about_url_1",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "about_label_2",
+      "label": "Link 2 label",
+      "default": "People & Planet"
+    },
+    {
+      "type": "url",
+      "id": "about_url_2",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "about_label_3",
+      "label": "Link 3 label",
+      "default": "Health In Mind"
+    },
+    {
+      "type": "url",
+      "id": "about_url_3",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "about_label_4",
+      "label": "Link 4 label",
+      "default": "Rewards"
+    },
+    {
+      "type": "url",
+      "id": "about_url_4",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "about_label_5",
+      "label": "Link 5 label",
+      "default": "Affiliates"
+    },
+    {
+      "type": "url",
+      "id": "about_url_5",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "text",
+      "id": "about_label_6",
+      "label": "Link 6 label",
+      "default": "Careers"
+    },
+    {
+      "type": "url",
+      "id": "about_url_6",
+      "label": "Link 6 URL"
+    },
+    {
+      "type": "text",
+      "id": "about_label_7",
+      "label": "Link 7 label",
+      "default": "Our Apps"
+    },
+    {
+      "type": "url",
+      "id": "about_url_7",
+      "label": "Link 7 URL"
+    },
+    {
+      "type": "text",
+      "id": "about_label_8",
+      "label": "Link 8 label",
+      "default": "Modern Slavery Statement"
+    },
+    {
+      "type": "url",
+      "id": "about_url_8",
+      "label": "Link 8 URL"
+    },
+    {
+      "type": "text",
+      "id": "about_label_9",
+      "label": "Link 9 label",
+      "default": "Investor Relations"
+    },
+    {
+      "type": "url",
+      "id": "about_url_9",
+      "label": "Link 9 URL"
+    },
+    {
+      "type": "text",
+      "id": "about_label_10",
+      "label": "Link 10 label",
+      "default": "Press & Events"
+    },
+    {
+      "type": "url",
+      "id": "about_url_10",
+      "label": "Link 10 URL"
+    },
+    {
+      "type": "header",
+      "content": "App Download"
+    },
+    {
+      "type": "text",
+      "id": "app_heading",
+      "label": "Heading",
+      "default": "GET THE MARIA NUALART APP"
+    },
+    {
+      "type": "richtext",
+      "id": "app_description",
+      "label": "Description",
+      "default": "<p>Scan the QR code with your smartphone to download the app.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Payment Methods"
+    },
+    {
+      "type": "text",
+      "id": "payments_heading",
+      "label": "Heading",
+      "default": "MARIA NUALART ACCEPTS"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mastercard",
+      "label": "Show Mastercard",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_visa",
+      "label": "Show Visa",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_amex",
+      "label": "Show American Express",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_jcb",
+      "label": "Show JCB",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_unionpay",
+      "label": "Show UnionPay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_apple_pay",
+      "label": "Show Apple Pay",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Brand Information"
+    },
+    {
+      "type": "text",
+      "id": "brand_heading",
+      "label": "Heading",
+      "default": "MARIA NUALART"
+    },
+    {
+      "type": "richtext",
+      "id": "brand_description",
+      "label": "Description",
+      "default": "<p>Premium luxury fashion and lifestyle products.</p>"
+    },
+    {
+      "type": "text",
+      "id": "brand_link_text",
+      "label": "Link text",
+      "default": "Shop on MARIA NUALART"
+    },
+    {
+      "type": "url",
+      "id": "brand_link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Copyright"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "© 2026 MARIA NUALART"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom footer",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %}
