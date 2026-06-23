@@ -42,7 +42,16 @@
         "page-content": {
           "type": "page-content",
           "settings": {},
-          "blocks": {}
+          "blocks": {},
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "type_preset": "h2",
+            "width": "100%"
+          }
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {}
         }
       },
       "block_order": [
