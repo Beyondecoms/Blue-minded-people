@@ -176,6 +176,93 @@ body, p, a, span, li, button, input, label, select, textarea, .nav-link, .produc
     font-size: 40px !important;
   }
 
+  .group-block-content p{
+    font-family: var(--font-body--family);
+    font-size: var(--font-paragraph--size);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-deep-navy);
+    line-height: 1.3;
+    margin: 0;
+    text-align: left;
+  }
+
+.template-collection .group-block--height-fit{
+  padding: 0;
+}
+
+/* Product Card Title */
+.card__title,
+.card__heading,
+.card-information__text a,
+.product-card__title {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #222222;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+/* Price container */
+.price__sale {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: baseline;
+     justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Sale price (current price) */
+.price-item--sale .price,
+.price__regular .price {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: #0B1F33;
+}
+
+/* Compare-at price (old price) */
+.compare-at-price {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: #666666;
+  text-decoration: line-through;
+}
+.price-item--sale{
+      font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    color: #0B1F33;
+}
+.template-collection .facets-toggle{
+  margin-top: 20px;
+}
+.group-block-content p {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .card__title,
+  .card__heading,
+  .card-information__text a {
+    font-size: 13px;
+  }
+  .price-item--sale .price,
+  .price__regular .price {
+    font-size: 14px;
+  }
+  .compare-at-price {
+    font-size: 12px;
+  }
+}
 
 @media only screen and (max-width: 768px){
     body .sbc-heading,
@@ -336,6 +423,102 @@ footer, footer *, .footer, .footer-heading {
 .footer-heading {
   font-weight: 500 !important;
 }
+/* Color overrides for cart drawer text */
+#header-component .cart-drawer__dialog,
+#header-component .cart-drawer__dialog a,
+#header-component .cart-drawer__dialog span,
+#header-component .cart-drawer__dialog p,
+#header-component .cart-drawer__dialog div,
+#header-component .cart-drawer__dialog h2,
+#header-component .cart-drawer__dialog h3,
+#header-component .cart-drawer__dialog h4,
+#header-component .cart-drawer__dialog h5,
+#header-component .cart-drawer__dialog h6,
+#header-component .cart-drawer__dialog dt,
+#header-component .cart-drawer__dialog dd,
+#header-component .cart-drawer__dialog li,
+#header-component .cart-drawer__dialog summary,
+#header-component .cart-drawer__dialog * {
+  color: #0B1F33 !important;
+}
+
+/* Maintain original color for checkout button and count bubble */
+#header-component .cart-drawer__dialog .checkout-button,
+#header-component .cart-drawer__dialog .checkout-button *,
+#header-component .cart-drawer__dialog .button-primary,
+#header-component .cart-drawer__dialog .button-primary *,
+#header-component .cart-drawer__dialog button.button,
+#header-component .cart-drawer__dialog button.button *,
+#header-component .cart-drawer__dialog .cart-bubble,
+#header-component .cart-drawer__dialog .cart-bubble * {
+  color: #FFFFFF !important;
+}
+
+/* Force SVGs inside cart drawer to inherit correct color/strokes */
+#header-component .cart-drawer__dialog svg,
+#header-component .cart-drawer__dialog svg * {
+  stroke: #0B1F33 !important;
+  fill: #0B1F33 !important;
+  color: #0B1F33 !important;
+}
+#header-component .cart-drawer__dialog .checkout-button svg,
+#header-component .cart-drawer__dialog .checkout-button svg * {
+  stroke: #FFFFFF !important;
+  fill: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+
+/* Prevent accordion from breaking product page grid */
+.product__media-wrapper,
+.product__media-gallery,
+.product-media-container,
+[class*="product__media"],
+[class*="product-media"] {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+/* Contain accordion state changes to its own block */
+details {
+  display: block;
+  width: 100%;
+}
+
+details[open] {
+  display: block;
+  width: 100%;
+}
+
+details[open] > *,
+details[open] summary ~ div {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Lock product page two-column grid */
+.product__info-wrapper,
+.product__content,
+.product-details,
+[class*="product__info"] {
+  min-width: 0;
+  overflow: hidden;
+}
+
+details[open] .accordion__content,
+details[open] [data-accordion-content],
+.product-details__content p,
+.product-details__content span,
+.product-details__content div {
+  font-family: var(--font-body) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  color: #666666 !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.01em !important;
+}
 
     {% endstyle %}
 
@@ -361,7 +544,7 @@ footer, footer *, .footer, .footer-heading {
     {% # theme-check-enable RemoteAsset %}
   </head>
 
-  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
+  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }} page-{{ page_title | handle }} template-{{ template.name | handle }}" >
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
     <div id="header-group">
       {% sections 'header-group' %}
