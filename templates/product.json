@@ -409,12 +409,52 @@
                   "block_order": [
                     "text_hYWKPd"
                   ]
+                },
+                "accordion_row_Kt4Rid": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Manufacturing",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_WrXEUf": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>{{ closest.product.metafields.custom.manufacturing | metafield_tag }}</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_WrXEUf"
+                  ]
                 }
               },
               "block_order": [
                 "accordion_row_TbgNUF",
                 "accordion_row_XMFatY",
-                "accordion_row_kmdwc8"
+                "accordion_row_kmdwc8",
+                "accordion_row_Kt4Rid"
               ]
             }
           },
