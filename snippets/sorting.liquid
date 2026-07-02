@@ -214,44 +214,58 @@
 
   .sorting-filter {
     @media screen and (min-width: 750px) {
-      z-index: var(--facets-upper-z-index);
+      z-index: 55;
+    }
+  }
+
+  /* Override accordion-custom clipping for the floating sorting panel on desktop */
+  @media screen and (min-width: 750px) {
+    .sorting-filter accordion-custom details,
+    .sorting-filter accordion-custom details::details-content,
+    .sorting-filter accordion-custom details .details-content {
+      overflow: visible !important;
+      overflow-y: visible !important;
+      block-size: auto !important;
     }
   }
 
   .sorting-filter__options {
-    display: grid;
-    grid-template-rows: 0fr;
+    display: flex;
+    flex-direction: column;
     opacity: 0;
+    pointer-events: none;
     position: absolute;
     top: 100%;
     right: 0;
     color: var(--color-foreground);
-    z-index: var(--facets-upper-z-index);
+    z-index: 55; /* Higher z-index to overlay above product grid contents */
     box-shadow: var(--shadow-popover);
     border: var(--style-border-popover);
     background-color: var(--color-background);
     border-radius: var(--style-border-radius-popover);
     width: max-content;
     min-width: var(--facets-panel-min-width);
-    min-height: 0;
+    max-height: 0;
+    overflow: hidden;
 
-    transition: grid-template-rows var(--animation-speed-slow) var(--animation-easing),
+    transition: max-height var(--animation-speed-slow) var(--animation-easing),
       opacity var(--animation-speed-slow) var(--animation-easing);
   }
 
   details[open] .sorting-filter__options {
     opacity: 1;
-    grid-template-rows: 1fr;
+    pointer-events: auto;
+    max-height: 80vh; /* Safety viewport limit / open height */
   }
 
   .sorting-filter__options-inner {
     display: flex;
     flex-direction: column;
-    grid-row: 1 / span 2;
     gap: var(--gap-sm);
     padding: calc(var(--drawer-padding) / 2);
     color: var(--color-foreground);
-    overflow: clip;
+    overflow-y: auto; /* Fallback scroll if options exceed max height */
+    max-height: 80vh; /* Safety viewport limit */
     scrollbar-width: none;
     -ms-overflow-style: none;
 

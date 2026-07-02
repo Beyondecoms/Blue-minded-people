@@ -491,11 +491,10 @@ details[open] {
   width: 100%;
 }
 
-details[open] > *,
-details[open] summary ~ div {
-  width: 100%;
-  max-width: 100%;
+.template-collection #quick-add-modal-content .group-block--height-fit{
+  padding-left: 12px !important;
 }
+
 
 /* Lock product page two-column grid */
 .product__info-wrapper,
@@ -620,11 +619,12 @@ details[open] [data-accordion-content],
 
     <main
       id="MainContent"
-      class="content-for-layout"
+      class="content-for-layout {{ template }}"
       role="main"
       data-page-transition-enabled="{{ settings.page_transition_enabled }}"
       data-product-transition="{{ settings.transition_to_main_product }}"
       data-template="{{ template }}"
+
     >
       {{ content_for_layout }}
     </main>

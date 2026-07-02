@@ -4213,3 +4213,33 @@ product-recommendations:has([data-has-recommendations='false']) {
     translate: 0px var(--atc-destination, 0px);
   }
 }
+
+related-products-carousel{
+  width: 95% !important;
+  margin: auto;
+}
+.resource-list__carousel slideshow-slides{
+  padding-left: 0;
+}
+
+@media only screen and (max-width: 768px){
+  .resource-list__carousel slideshow-slides{
+    padding-left: 6px !important;
+  }
+}
+
+@media only screen and (min-width: 769px){
+  .resource-list__carousel slideshow-slides{
+    padding-left: 16px !important;
+  }
+  .section-resource-list__content{
+    margin-left: -40px;
+  }
+}
+
+.template-collection .product-price-main-sale{
+   font-size: 20px;
+}
+slideshow-component .product-price-main-sale{
+   font-size: 16px !important;
+}

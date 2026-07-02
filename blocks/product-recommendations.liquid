@@ -60,9 +60,11 @@
       --border-radius: {{ block_settings.border_radius }}px;
     "
   >
-    <div class="section-resource-list__content">
+
+    <div class="section-resource-list__content aaa">
       {% content_for 'blocks' %}
     </div>
+   
 
     {%- if recommendations.performed or closest.product == blank -%}
       {% liquid

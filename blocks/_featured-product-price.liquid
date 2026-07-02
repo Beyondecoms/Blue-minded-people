@@ -42,7 +42,8 @@
     {% render 'price',
       show_unit_price: true,
       show_sale_price_first: block_settings.show_sale_price_first,
-      product_resource: product
+      product_resource: product,
+      is_main_price: true
     %}
   {% endif %}
 </product-price>

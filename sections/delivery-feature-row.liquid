@@ -1,0 +1,430 @@
+{%- liquid
+  assign section_id = 'delivery-feature-' | append: section.id
+-%}
+
+<div
+  id="{{ section_id }}"
+  class="delivery-feature-row{% if section.settings.show_top_border %} delivery-feature-row--bordered{% endif %}"
+  style="
+    --padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --gap-icon-text: {{ section.settings.gap_icon_text }}px;
+    --gap-columns: {{ section.settings.gap_columns }}px;
+    --bg-color: {{ section.settings.bg_color }};
+    --border-color: {{ section.settings.border_color }};
+    --icon-color: {{ section.settings.icon_color }};
+    --icon-size: {{ section.settings.icon_size }}px;
+    --title-size-desktop: {{ section.settings.title_size_desktop }}px;
+    --title-size-mobile: {{ section.settings.title_size_mobile }}px;
+    --title-color: {{ section.settings.title_color }};
+    --desc-size-desktop: {{ section.settings.desc_size_desktop }}px;
+    --desc-size-mobile: {{ section.settings.desc_size_mobile }}px;
+    --desc-color: {{ section.settings.desc_color }};
+    --columns-desktop: {{ section.settings.columns_desktop }};
+  "
+>
+  <div class="delivery-feature-row__scroll-wrapper">
+    <div class="delivery-feature-row__track">
+      {%- for i in (1..2) -%}
+        <div class="delivery-feature-row__grid" aria-hidden="{% if i == 2 %}true{% else %}false{% endif %}">
+          {%- for block in section.blocks -%}
+            <div class="delivery-feature-row__column" {% if i == 1 %}{{ block.shopify_attributes }}{% endif %}>
+              {%- if block.settings.icon_svg != blank -%}
+                <div class="delivery-feature-row__icon">
+                  {{ block.settings.icon_svg }}
+                </div>
+              {%- elsif block.settings.icon_image != blank -%}
+                <div class="delivery-feature-row__icon">
+                  {{ block.settings.icon_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'delivery-feature-row__icon-img', alt: block.settings.title }}
+                </div>
+              {%- endif -%}
+              <div class="delivery-feature-row__text-block">
+                {%- if block.settings.title != blank -%}
+                  <h3 class="delivery-feature-row__title">{{ block.settings.title }}</h3>
+                {%- endif -%}
+                {%- if block.settings.description != blank -%}
+                  <p class="delivery-feature-row__description">{{ block.settings.description }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+.delivery-feature-row {
+  width: 100%;
+  background-color: var(--bg-color);
+  box-sizing: border-box;
+  padding-top: var(--padding-top-mobile);
+  padding-bottom: var(--padding-bottom-mobile);
+  overflow: hidden;
+}
+
+.delivery-feature-row--bordered {
+  border-top: 1px solid var(--border-color);
+}
+
+@media screen and (min-width: 750px) {
+  .delivery-feature-row {
+    padding-top: var(--padding-top-desktop);
+    padding-bottom: var(--padding-bottom-desktop);
+  }
+}
+
+.delivery-feature-row__scroll-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.delivery-feature-row__track {
+  display: flex;
+  width: max-content;
+  animation: delivery-feature-scroll 30s linear infinite;
+}
+
+.delivery-feature-row__scroll-wrapper:hover .delivery-feature-row__track {
+  animation-play-state: paused;
+}
+
+@keyframes delivery-feature-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.delivery-feature-row__grid {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--gap-columns);
+  padding-right: var(--gap-columns);
+}
+
+.delivery-feature-row__column {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-icon-text);
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.delivery-feature-row__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  color: var(--icon-color);
+  flex-shrink: 0;
+}
+
+.delivery-feature-row__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--icon-stroke-width, 1.5px);
+}
+
+.delivery-feature-row__icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.delivery-feature-row__text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.delivery-feature-row__title {
+  font-family: var(--font-body, var(--font-body--family, "Inter", sans-serif));
+  font-weight: 600;
+  color: var(--title-color);
+  font-size: var(--title-size-mobile);
+  margin: 0;
+  line-height: 1.2;
+}
+
+@media screen and (min-width: 750px) {
+  .delivery-feature-row__title {
+    font-size: var(--title-size-desktop);
+  }
+}
+
+.delivery-feature-row__description {
+  font-family: var(--font-body, var(--font-body--family, "Inter", sans-serif));
+  font-weight: 400;
+  color: var(--desc-color);
+  font-size: var(--desc-size-mobile);
+  margin: 0;
+  line-height: 1.4;
+}
+
+@media screen and (min-width: 750px) {
+  .delivery-feature-row__description {
+    font-size: var(--desc-size-desktop);
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Delivery Feature Row",
+  "class": "delivery-feature-row-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Number of columns (Desktop)",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 Columns"
+        },
+        {
+          "value": "3",
+          "label": "3 Columns"
+        },
+        {
+          "value": "4",
+          "label": "4 Columns"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "header",
+      "content": "Icon Styling"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon Size",
+      "min": 32,
+      "max": 56,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#222222"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "label": "Title Size (Desktop)",
+      "min": 14,
+      "max": 18,
+      "step": 1,
+      "default": 15,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title Size (Mobile)",
+      "min": 13,
+      "max": 16,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#222222"
+    },
+    {
+      "type": "range",
+      "id": "desc_size_desktop",
+      "label": "Description Size (Desktop)",
+      "min": 12,
+      "max": 15,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desc_size_mobile",
+      "label": "Description Size (Mobile)",
+      "min": 11,
+      "max": 14,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Borders and Background"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_border",
+      "label": "Enable Top Border",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F8F6F2"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Desktop Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Desktop Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Padding Top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Padding Bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "gap_icon_text",
+      "label": "Gap between icon and text",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "gap_columns",
+      "label": "Gap between columns",
+      "min": 24,
+      "max": 60,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_item",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG (Inline SVG Code)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title Text",
+          "default": "Feature Advantage"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description Text",
+          "default": "Short detail about this feature benefit"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Delivery Feature Row",
+      "blocks": [
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "Free Shipping",
+            "description": "On orders over $150",
+            "icon_svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='currentColor' fill='none'><path stroke-linecap='round' stroke-linejoin='round' d='M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124l-.083-1.332m-9.882-6.52c-.622 0-1.124.503-1.124 1.125V18.75m0-12.75V3.375c0-.621.503-1.125 1.125-1.125h9.75c.621 0 1.125.504 1.125 1.125V15.75m-11.25-10.5h11.25M22.5 10.5h-3.375A1.125 1.125 0 0 1 18 9.375V6m0 4.5V18.75' /></svg>"
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "Easy Returns",
+            "description": "30-day wear test warranty",
+            "icon_svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='currentColor' fill='none'><path stroke-linecap='round' stroke-linejoin='round' d='M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3' /></svg>"
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "title": "Secure Checkout",
+            "description": "100% encrypted payment gateway",
+            "icon_svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='currentColor' fill='none'><path stroke-linecap='round' stroke-linejoin='round' d='M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z' /></svg>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

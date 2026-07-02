@@ -56,9 +56,11 @@
       {{ styles }}
     "
   >
-    <div class="section-resource-list__content">
+
+    <div class="section-resource-list__content fffff">
       {% content_for 'blocks' %}
     </div>
+
 
     {%- if recommendations.performed or section.settings.product == blank -%}
       {% liquid
@@ -83,6 +85,7 @@
         endif
       %}
       {% capture list_items %}
+ 
         {% for product in products limit: section.settings.max_products %}
           <div class="resource-list__item">
             {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}

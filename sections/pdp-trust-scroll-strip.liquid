@@ -1,0 +1,459 @@
+{%- liquid
+  assign section_id = 'pdp-trust-strip-' | append: section.id
+-%}
+
+<div
+  id="{{ section_id }}"
+  class="pdp-trust-scroll-strip{% if section.settings.border_enable %} pdp-trust-scroll-strip--bordered{% endif %}"
+  style="
+    --section-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --section-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --section-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --gap: {{ section.settings.gap }}px;
+    --scroll-speed: {{ section.settings.scroll_speed }}s;
+    --font-size-desktop: {{ section.settings.font_size_desktop }}px;
+    --font-size-mobile: {{ section.settings.font_size_mobile }}px;
+    --font-weight: {{ section.settings.font_weight }};
+    --text-color: {{ section.settings.text_color }};
+    --icon-color: {{ section.settings.icon_color }};
+    --icon-size: {{ section.settings.icon_size }}px;
+    --divider-color: {{ section.settings.divider_color }};
+    --bg-color: {{ section.settings.bg_color }};
+    --border-color: {{ section.settings.border_color }};
+  "
+>
+  <div class="pdp-trust-scroll-strip__track">
+    {%- comment -%} Repeat 4 times to ensure seamless infinite looping on all screen sizes {%- endcomment -%}
+    {%- for i in (1..4) -%}
+      <div
+        class="pdp-trust-scroll-strip__set pdp-trust-scroll-strip__set--{{ section.settings.scroll_direction }}"
+        {% if i > 1 %}aria-hidden="true"{% endif %}
+      >
+        {%- for block in section.blocks -%}
+          <div class="pdp-trust-scroll-strip__item" {{ block.shopify_attributes }}>
+            {%- if block.settings.icon_svg != blank -%}
+              <div class="pdp-trust-scroll-strip__icon">
+                {{ block.settings.icon_svg }}
+              </div>
+            {%- elsif block.settings.icon_image != blank -%}
+              <div class="pdp-trust-scroll-strip__icon">
+                {{ block.settings.icon_image | image_url: width: 60 | image_tag: class: 'pdp-trust-scroll-strip__icon-img', loading: 'lazy', alt: block.settings.text }}
+              </div>
+            {%- endif -%}
+            <span class="pdp-trust-scroll-strip__label">{{ block.settings.text }}</span>
+          </div>
+          <span class="pdp-trust-scroll-strip__divider pdp-trust-scroll-strip__divider--{{ section.settings.divider_style }}" aria-hidden="true"></span>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+.pdp-trust-scroll-strip {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  font-family: var(--font-body, var(--font-body--family, "Inter", sans-serif));
+  font-weight: var(--font-weight);
+  letter-spacing: 0.5px;
+  color: var(--text-color);
+  box-sizing: border-box;
+  padding-top: var(--section-padding-top-mobile);
+  padding-bottom: var(--section-padding-bottom-mobile);
+}
+
+.pdp-trust-scroll-strip--bordered {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+@media screen and (min-width: 750px) {
+  .pdp-trust-scroll-strip {
+    padding-top: var(--section-padding-top-desktop);
+    padding-bottom: var(--section-padding-bottom-desktop);
+  }
+}
+
+.pdp-trust-scroll-strip__track {
+  display: flex;
+  width: max-content;
+}
+
+.pdp-trust-scroll-strip__set {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--gap);
+  padding-right: var(--gap);
+}
+
+/* Scroll Direction Animation classes */
+.pdp-trust-scroll-strip__set--left {
+  animation: pdp-scroll-left var(--scroll-speed) linear infinite;
+}
+
+.pdp-trust-scroll-strip__set--right {
+  animation: pdp-scroll-right var(--scroll-speed) linear infinite;
+}
+
+/* Pause animation on hover (desktop/hover-capable only) */
+@media screen and (min-width: 750px) {
+  .pdp-trust-scroll-strip:hover .pdp-trust-scroll-strip__set {
+    animation-play-state: paused;
+  }
+}
+
+.pdp-trust-scroll-strip__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.pdp-trust-scroll-strip__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  color: var(--icon-color);
+  flex-shrink: 0;
+}
+
+.pdp-trust-scroll-strip__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--icon-stroke-width, 1.5px);
+}
+
+.pdp-trust-scroll-strip__icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pdp-trust-scroll-strip__label {
+  font-size: var(--font-size-mobile);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 750px) {
+  .pdp-trust-scroll-strip__label {
+    font-size: var(--font-size-desktop);
+  }
+}
+
+.pdp-trust-scroll-strip__divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--divider-color);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* Divider Styles */
+.pdp-trust-scroll-strip__divider--line::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 14px;
+  background-color: var(--divider-color);
+}
+
+.pdp-trust-scroll-strip__divider--dot::after {
+  content: "•";
+}
+
+.pdp-trust-scroll-strip__divider--icon-based::after {
+  content: "⊕";
+}
+
+@keyframes pdp-scroll-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes pdp-scroll-right {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "PDP Trust Scroll Strip",
+  "class": "pdp-trust-scroll-strip-section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed (seconds per loop)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 30,
+      "unit": "s"
+    },
+    {
+      "type": "select",
+      "id": "scroll_direction",
+      "label": "Scroll direction",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "label": "Desktop Font Size",
+      "min": 12,
+      "max": 16,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "label": "Mobile Font Size",
+      "min": 11,
+      "max": 14,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#222222"
+    },
+    {
+      "type": "header",
+      "content": "Icon Styling"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#222222"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon Size",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Divider"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Color",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "select",
+      "id": "divider_style",
+      "label": "Divider Style",
+      "options": [
+        {
+          "value": "line",
+          "label": "Line"
+        },
+        {
+          "value": "dot",
+          "label": "Dot"
+        },
+        {
+          "value": "icon-based",
+          "label": "Icon-based (⊕)"
+        }
+      ],
+      "default": "icon-based"
+    },
+    {
+      "type": "header",
+      "content": "Background and Borders"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F8F6F2"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_enable",
+      "label": "Enable border top and bottom",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Desktop Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Desktop Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Padding Top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Padding Bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between items",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG (Inline SVG Code)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Label Text",
+          "default": "Trust item benefit"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP Trust Scroll Strip",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "text": "Free shipping over $150",
+            "icon_svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' fill='none'><path stroke-linecap='round' stroke-linejoin='round' d='M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124l-.083-1.332m-9.882-6.52c-.622 0-1.124.503-1.124 1.125V18.75m0-12.75V3.375c0-.621.503-1.125 1.125-1.125h9.75c.621 0 1.125.504 1.125 1.125V15.75m-11.25-10.5h11.25M22.5 10.5h-3.375A1.125 1.125 0 0 1 18 9.375V6m0 4.5V18.75' /></svg>"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "text": "30-day wear test",
+            "icon_svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' fill='none'><path stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z' /></svg>"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "text": "Designed to last",
+            "icon_svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' fill='none'><path stroke-linecap='round' stroke-linejoin='round' d='M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z' /></svg>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -593,4 +593,59 @@
       transform: translateY(0);
     }
   }
+
+  /* Quick View Modal Title, Price and Badge Styling */
+  .quick-add-modal .view-product-title a,
+  .quick-add-modal .view-product-title a * {
+    font-family: var(--font-body--family) !important;
+    font-weight: 600 !important;
+    color: var(--color-deep-navy, #0B1F33) !important;
+    font-size: 20px !important;
+  }
+
+  .quick-add-modal .product-price-main-wrapper,
+  .quick-add-modal product-price .price__sale,
+  .quick-add-modal product-price .price-item__group {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 10px !important;
+    margin: 8px 0 !important;
+  }
+
+  .quick-add-modal .product-price-main-sale,
+  .quick-add-modal product-price .price-item--sale,
+  .quick-add-modal product-price .price {
+    font-family: var(--font-body--family) !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    color: var(--color-deep-navy, #0B1F33) !important;
+    line-height: 1.2 !important;
+  }
+
+  .quick-add-modal .product-price-main-compare,
+  .quick-add-modal product-price .compare-at-price,
+  .quick-add-modal product-price .price-item--regular {
+    font-family: var(--font-body--family) !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: var(--color-medium-grey, #666666) !important;
+    text-decoration: line-through !important;
+    line-height: 1.2 !important;
+  }
+
+  .quick-add-modal .product-price-main-savings {
+    font-family: var(--font-body--family) !important;
+    font-weight: 600 !important;
+    font-size: 11px !important;
+    color: var(--color-off-white, #F8F6F2) !important;
+    background-color: var(--color-copper-rivet, #B87333) !important;
+    border: none !important;
+    border-radius: 2px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding: 4px 10px !important;
+    line-height: 1.2 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
 {% endstylesheet %}

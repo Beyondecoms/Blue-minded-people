@@ -14,6 +14,12 @@
   assign price = selected_variant.price
   assign compare_at_price = selected_variant.compare_at_price
 
+  assign savings_percentage = 0
+  if compare_at_price > price
+    assign savings_value = compare_at_price | minus: price
+    assign savings_percentage = savings_value | times: 100.0 | divided_by: compare_at_price | round
+  endif
+
   assign show_compare_price = false
   if compare_at_price > price
     assign show_compare_price = true
@@ -67,68 +73,152 @@
 -%}
 
 <div ref="priceContainer">
-  {% if has_volume_pricing %}
-    {% if show_compare_price %}
-      <span class="price-item__group">
-        <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
-        <span class="compare-at-price">{{ compare_at_price }}</span>
-      </span>
+  {%- if is_main_price -%}
+    {% comment %} Professional Pricing Layout for Product Details Page {% endcomment %}
+    <style>
+      .product-price-main-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin: 6px 0;
+      }
+      .product-price-main-sale {
+        font-family: var(--font-body);
+        font-size: 24px;
+        font-weight: 700;
+        color: #0B1F33; /* Theme deep navy/black */
+        line-height: 1.2;
+      }
+      .product-price-main-compare {
+        font-family: var(--font-body);
+        font-size: 16px;
+        font-weight: 400;
+        color: #8A96A3; /* Sleek muted gray */
+        text-decoration: line-through;
+        line-height: 1.2;
+      }
+      .product-price-main-savings {
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 600;
+        color: #1a7f37; /* Forest green savings color */
+        background-color: #e6f7ed; /* Light green background */
+        padding: 4px 10px;
+        border-radius: 6px;
+        border: 1px solid #d0f0db;
+        display: inline-flex;
+        align-items: center;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        line-height: 1.2;
+      }
+      @media screen and (max-width: 768px) {
+        .product-price-main-sale {
+          font-size: 20px;
+        }
+        .product-price-main-compare {
+          font-size: 14px;
+        }
+        .product-price-main-savings {
+          font-size: 12px;
+          padding: 3px 8px;
+        }
+      }
+    </style>
+
+    <div class="product-price-main-wrapper">
+      {%- if show_compare_price -%}
+        <span class="product-price-main-sale">{{ price }}</span>
+        <span class="product-price-main-compare">{{ compare_at_price }}</span>
+        {%- if savings_percentage > 0 -%}
+          <span class="product-price-main-savings">Save {{ savings_percentage }}%</span>
+        {%- endif -%}
+      {%- else -%}
+        <span class="product-price-main-sale">{{ price }}</span>
+      {%- endif -%}
+    </div>
+
+    {% if selected_variant.unit_price and show_unit_price %}
+      {% liquid
+        if use_currency
+          assign unit_price = selected_variant.unit_price | money_with_currency | replace: '.00', '' | replace: ' INR', ''
+        else
+          assign unit_price = selected_variant.unit_price | money | replace: '.00', ''
+        endif
+      %}
+
+      {% render 'unit-price',
+        price: unit_price,
+        measurement: selected_variant.unit_price_measurement
+      %}
     {% endif %}
 
-    <span class="price-item__group">
-      <span class="visually-hidden">{{ 'content.price_range' | t }}</span>
-      <span class="price">{{ price_min }} - {{ price_max }}</span>
-    </span>
-
-  {% else %}
-
-    <div class="price__regular {% if show_compare_price %}price__hidden{% endif %}">
-      <span class="price">{{ price }}</span>
-    </div>
-
-    <div class="price__sale {% unless show_compare_price %}price__hidden{% endunless %}">
-      {% if show_sale_price_first %}
-        <span class="price-item__group">
-          <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
-          <span class="price-item--sale price">{{ price }}</span>
-        </span>
-
+  {%- else -%}
+    {% comment %} Original layout for product cards and recommendations {% endcomment %}
+    {% if has_volume_pricing %}
+      {% if show_compare_price %}
         <span class="price-item__group">
           <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
-          <span class="price-item--regular compare-at-price">{{ compare_at_price }}</span>
+          <span class="compare-at-price">{{ compare_at_price }}</span>
         </span>
-
-      {% else %}
-
-        <span class="price-item__group">
-          <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
-          <span class="price-item--regular compare-at-price">{{ compare_at_price }}</span>
-        </span>
-
-        <span class="price-item__group">
-          <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
-          <span class="price-item--sale price">{{ price }}</span>
-        </span>
-
       {% endif %}
-    </div>
 
-  {% endif %}
+      <span class="price-item__group">
+        <span class="visually-hidden">{{ 'content.price_range' | t }}</span>
+        <span class="price">{{ price_min }} - {{ price_max }}</span>
+      </span>
 
-  {% if selected_variant.unit_price and show_unit_price %}
-    {% liquid
-      if use_currency
-        assign unit_price = selected_variant.unit_price | money_with_currency | replace: '.00', '' | replace: ' INR', ''
-      else
-        assign unit_price = selected_variant.unit_price | money | replace: '.00', ''
-      endif
-    %}
+    {% else %}
 
-    {% render 'unit-price',
-      price: unit_price,
-      measurement: selected_variant.unit_price_measurement
-    %}
-  {% endif %}
+      <div class="price__regular {% if show_compare_price %}price__hidden{% endif %}">
+        <span class="price">{{ price }}</span>
+      </div>
+
+      <div class="price__sale {% unless show_compare_price %}price__hidden{% endunless %}">
+        {% if show_sale_price_first %}
+          <span class="price-item__group">
+            <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
+            <span class="price-item--sale price">{{ price }}</span>
+          </span>
+
+          <span class="price-item__group">
+            <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
+            <span class="price-item--regular compare-at-price">{{ compare_at_price }}</span>
+          </span>
+
+        {% else %}
+
+          <span class="price-item__group">
+            <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
+            <span class="price-item--regular compare-at-price">{{ compare_at_price }}</span>
+          </span>
+
+          <span class="price-item__group">
+            <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
+            <span class="price-item--sale price">{{ price }}</span>
+          </span>
+
+        {% endif %}
+      </div>
+
+    {% endif %}
+
+    {% if selected_variant.unit_price and show_unit_price %}
+      {% liquid
+        if use_currency
+          assign unit_price = selected_variant.unit_price | money_with_currency | replace: '.00', '' | replace: ' INR', ''
+        else
+          assign unit_price = selected_variant.unit_price | money | replace: '.00', ''
+        endif
+      %}
+
+      {% render 'unit-price',
+        price: unit_price,
+        measurement: selected_variant.unit_price_measurement
+      %}
+    {% endif %}
+  {%- endif -%}
 </div>
 
 {% if has_volume_pricing %}

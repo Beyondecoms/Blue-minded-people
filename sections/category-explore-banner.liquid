@@ -1,0 +1,506 @@
+{%- comment -%} Trigger Shopify CLI dev sync v2 {%- endcomment -%}
+{%- liquid
+  assign section_id = 'category-explore-banner-' | append: section.id
+  assign middle_index = section.blocks.size | divided_by: 2
+  assign target_overlay_index = middle_index
+
+  if section.settings.overlay_position == 'left'
+    assign target_overlay_index = 0
+  elsif section.settings.overlay_position == 'right'
+    assign target_overlay_index = section.blocks.size | minus: 1
+  endif
+
+  assign panel_count = section.blocks.size
+  if panel_count == 0
+    assign panel_count = 1
+  endif
+  assign desktop_vw = 100 | divided_by: panel_count
+
+  if section.settings.mobile_layout == 'single'
+    assign sizes = '(min-width: 750px) ' | append: desktop_vw | append: 'vw, 100vw'
+  else
+    assign sizes = '(min-width: 750px) ' | append: desktop_vw | append: 'vw, ' | append: desktop_vw | append: 'vw'
+  endif
+
+  assign button_bg_rgba = section.settings.button_bg_color | color_modify: 'alpha', 0.8
+-%}
+
+<div
+  id="{{ section_id }}"
+  class="category-explore-banner-wrapper"
+  style="
+    --section-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --section-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --section-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --banner-height-desktop: {{ section.settings.banner_height_desktop }}px;
+    --banner-height-mobile: {{ section.settings.banner_height_mobile }}px;
+    --gap-overlay: {{ section.settings.gap_overlay }}px;
+    --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --heading-color: {{ section.settings.heading_color }};
+    --button-bg-color: {{ section.settings.button_bg_color }};
+    --button-bg-rgba: {{ button_bg_rgba }};
+    --button-text-color: {{ section.settings.button_text_color }};
+    --button-border-color: {{ section.settings.button_border_color }};
+    --button-font-size: {{ section.settings.button_font_size }}px;
+    --button-padding-vertical: {{ section.settings.button_padding_vertical }}px;
+    --button-padding-horizontal: {{ section.settings.button_padding_horizontal }}px;
+  "
+>
+  <div class="category-explore-banner{% if section.settings.mobile_layout == 'single' %} category-explore-banner--mobile-single{% endif %}">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign is_active_mobile = false
+        if forloop.index0 == middle_index
+          assign is_active_mobile = true
+        endif
+
+        assign render_overlay = false
+        if forloop.index0 == target_overlay_index
+          assign render_overlay = true
+        endif
+      -%}
+      <div
+        class="category-explore-banner__panel{% if is_active_mobile %} category-explore-banner__panel--active-mobile{% endif %}"
+        {{ block.shopify_attributes }}
+      >
+        <div class="category-explore-banner__image-wrap">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1500 | image_tag: loading: 'lazy', sizes: sizes, widths: '375, 550, 750, 1100, 1500', class: 'category-explore-banner__image' }}
+          {%- else -%}
+            {%- assign placeholder_index = forloop.index | modulo: 3 | plus: 1 -%}
+            {{ 'collection-' | append: placeholder_index | placeholder_svg_tag: 'placeholder-svg category-explore-banner__image' }}
+          {%- endif -%}
+        </div>
+
+        {%- if render_overlay -%}
+          <div class="category-explore-banner__overlay-content">
+            {%- if section.settings.heading != blank -%}
+              <h2 class="category-explore-banner__heading">{{ section.settings.heading }}</h2>
+            {%- endif -%}
+            {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+              <a href="{{ section.settings.cta_link }}" class="category-explore-banner__cta">
+                {{ section.settings.cta_label }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+.category-explore-banner-wrapper {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  padding-top: var(--section-padding-top-mobile);
+  padding-bottom: var(--section-padding-bottom-mobile);
+  overflow: hidden;
+}
+
+@media screen and (min-width: 750px) {
+  .category-explore-banner-wrapper {
+    padding-top: var(--section-padding-top-desktop);
+    padding-bottom: var(--section-padding-bottom-desktop);
+  }
+}
+
+.category-explore-banner {
+  display: flex;
+  width: 100%;
+  height: var(--banner-height-mobile);
+  position: relative;
+}
+
+@media screen and (min-width: 750px) {
+  .category-explore-banner {
+    height: var(--banner-height-desktop);
+  }
+}
+
+.category-explore-banner__panel {
+  position: relative;
+  flex: 1 1 0%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Dimming Overlay on each panel */
+.category-explore-banner__panel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, var(--overlay-opacity));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.category-explore-banner__image-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.category-explore-banner__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.category-explore-banner__overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  gap: var(--gap-overlay);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.category-explore-banner__heading {
+  font-family: var(--font-heading, var(--font-heading--family, "Canela", serif));
+  font-weight: 700;
+  letter-spacing: normal;
+  color: var(--heading-color);
+  font-size: var(--heading-size-mobile);
+  margin: 0;
+  line-height: 1.2;
+  max-width: 480px;
+}
+
+@media screen and (min-width: 750px) {
+  .category-explore-banner__heading {
+    font-size: var(--heading-size-desktop);
+  }
+}
+
+/* Legibility Text Shadow */
+{% if section.settings.enable_text_shadow or section.settings.overlay_opacity == 0 %}
+.category-explore-banner__heading {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+{% endif %}
+
+.category-explore-banner__cta {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-body, var(--font-body--family, "Inter", sans-serif));
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: var(--button-font-size);
+  color: var(--button-text-color);
+  background-color: var(--button-bg-rgba);
+  border: 1px solid var(--button-border-color);
+  padding: var(--button-padding-vertical) var(--button-padding-horizontal);
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  white-space: nowrap;
+}
+
+.category-explore-banner__cta:hover {
+  background-color: var(--color-copper-rivet, #B87333);
+  color: var(--color-off-white, #F8F6F2);
+  border-color: var(--color-copper-rivet, #B87333);
+}
+
+/* Mobile responsive single image hero format */
+@media screen and (max-width: 749px) {
+  .category-explore-banner--mobile-single .category-explore-banner__panel:not(.category-explore-banner__panel--active-mobile) {
+    display: none;
+  }
+  .category-explore-banner--mobile-single .category-explore-banner__panel--active-mobile {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Category Explore Banner",
+  "class": "category-explore-banner-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Text",
+      "default": "Explore More Women's Fashion"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Button Label",
+      "default": "Explore Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "select",
+      "id": "overlay_position",
+      "label": "Overlay position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left Panel"
+        },
+        {
+          "value": "center",
+          "label": "Middle Panel"
+        },
+        {
+          "value": "right",
+          "label": "Right Panel"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Background dim/overlay opacity",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "default": 0,
+      "unit": "%"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_text_shadow",
+      "label": "Auto text-shadow on heading for legibility",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Banner Height"
+    },
+    {
+      "type": "range",
+      "id": "banner_height_desktop",
+      "label": "Desktop height",
+      "min": 400,
+      "max": 700,
+      "step": 10,
+      "default": 560,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "banner_height_mobile",
+      "label": "Mobile height",
+      "min": 300,
+      "max": 450,
+      "step": 10,
+      "default": 360,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Desktop Heading Size",
+      "min": 32,
+      "max": 56,
+      "step": 1,
+      "default": 42,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Mobile Heading Size",
+      "min": 22,
+      "max": 34,
+      "step": 1,
+      "default": 26,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#F8F6F2"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#F8F6F2"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#F8F6F2"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button Font Size",
+      "min": 12,
+      "max": 14,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Button Padding Vertical",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Button Padding Horizontal",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Desktop Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Desktop Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Padding Top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Padding Bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "gap_overlay",
+      "label": "Gap between heading & button",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Responsive Format"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile layout",
+      "options": [
+        {
+          "value": "collage",
+          "label": "Collage (3 narrow columns)"
+        },
+        {
+          "value": "single",
+          "label": "Single Image Hero"
+        }
+      ],
+      "default": "collage"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Image Panel",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Panel Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Explore Banner",
+      "blocks": [
+        {
+          "type": "panel"
+        },
+        {
+          "type": "panel"
+        },
+        {
+          "type": "panel"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
